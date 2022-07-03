@@ -16,6 +16,7 @@ public class DIExp14 {
 		System.out.println(obj);
 		obj.myHandPhone();
 		ctx.close();
+		
 	}
 	
 	
