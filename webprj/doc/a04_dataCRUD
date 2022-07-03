@@ -1,0 +1,365 @@
+# 웹화면에서 리스트/등록/수정/삭제 처리
+0. 핵심 프로세스
+	1) 화면단 기본 디자인 : html/css
+	2) 이벤트를 통해 동적인 처리, 유효성 처리 : javascript
+	3) 로직, db처리 : java(dao)
+	
+1. 데이터 등록 처리
+	1) 메인화면에서 등록버튼 생성 및 등록화면으로 이동처리(js)
+		함수호출 : location.href="등록화면"
+		
+	2) 등록화면 UI 구성(a01_empSchList.jsp)
+		html/css 처리 : emp테이블에 들어갈 항목
+		필수입력항목 설정 js로 처리
+		요청값 확인(등록데이터)
+		등록 DAO 구성 및 기능 메소드 호출
+		등록완료 후, 처리 process
+			- confirm()을 활용
+				계속 등록
+				list 화면으로 이동 처리
+2. 메인화면에 등록화면 이동처리(js)
+	0) a02_empInsert.jsp 페이지 타이틀(사원등록)
+	1) 기능함수 선언
+		function goInsertPage(){
+			location.href="a02_empInsert.jsp";
+		}
+	2) 버튼 선언과 이벤트 핸들러 함수 처리
+		<input type="button" value="사원등록화면" onclick="goInsertPage()"/>
+3. 등록화면 UI 구성
+	1) 등록할 항목 결정 : sql insert를 통해서 확인
+		sql 실행
+		insert into emp01 values(1000, '홍길동', '사원', 7780,
+			to_date('2020-06-21','YYYY-MM-DD'), 3500, 1000, 10);
+		vo객체 이 데이터를 받는 생성자를 확인
+		화면처리
+			사원번호, 사원명, 직책명, 관리자번호, 입사일, 급여, 보너스, 부서번호
+			empno	ename job 	mgr	 hiredateS sal comm deptno
+			
+			
+	2) insert 항목 기준으로 입력할 form 하위 객체들 지정
+		@@@ : empno, ename, job, mgr, hiredateS, sal, comm, deptno
+		#### : 사원번호, 사원명, 직책명, 관리자번호, 입사일, 급여, 보너스, 부서번호
+			<div class="row">
+				<div class="col-25">
+					<label for="@@@">####</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="@@@" name="@@@" placeholder="####입력.."
+	  		       value="">
+	  		  	</div>
+			</div>
+4. 필수입력항목 설정 js로 처리 요청값 확인(등록데이터)	
+	<input type="submit" ==> <input type="button" onclick="regEmp()"
+	function regEmp(){
+		var empnoObj = document.querySelector("[name=empno]");	// name값 속성으로 접근
+		var enameObj = document.querySelector("#ename");	// id명으로 접근
+		var hiredateSObj = document.querySelector("#hiredateS");
+		if(empnoObj.value = ""){
+			alert("사원번호를 입력하세요");
+			empnoObj.focus();
+			return
+		}
+		if(enameObj.value = ""){
+			alert("사원명을 입력하세요");
+			enameObj.focus();
+			return
+		}
+		if(hiredateSObj.value = ""){
+			alert("입사일을 입력하세요");
+			hiredateSObj.focus();
+			return
+		}
+		document.querySelector("form").submit();
+	}		
+	<%
+	empno, ename, job, mgr, hiredateS, sal, comm, deptno
+	
+	int empno,mgr,deptno; empno=mgr=deptno=0;
+	double sal, comm; sal=comm=0;
+	
+	String empnoS = request.getParameter("empno");
+	if(empnoS!=null && !empnoS.equals("")) empno = Integer.parseInt(empnoS);
+	
+	String mgrS = request.getParameter("mgr");
+	if(mgrS!=null) mgr = Integer.parseInt(mgrS);
+	
+	String deptnoS = request.getParameter("deptno");
+	if(deptnoS!=null) deptno = Integer.parseInt(deptnoS);
+	
+	String salS = request.getParameter("sal");
+	if(salS!=null) sal = Double.parseDouble(salS);
+	
+	String commS = request.getParameter("comm");
+	if(commS!=null) comm = Double.parseDouble(commS);
+	
+	String ename = request.getParameter("ename"); if(ename==null) ename="";
+	String job = request.getParameter("job"); if(job==null) job="";
+	String hiredateS = request.getParameter("hiredateS"); if(hiredateS==null) hiredateS="";
+	log("empno:"+empno);log("mgr:"+mgr);log("deptno:"+deptno);
+	log("sal:"+sal);log("comm:"+comm);
+	log("ename:"+ename);log("job:"+job);log("hiredateS:"+hiredateS);
+	%>
+
+5. 등록처리 DAO 호출 및 완료
+	1) sql ==> vo ==> 기능메소드
+		select deptno, dname, loc
+		==>
+		class Dept{
+			private int deptno;
+			private String dname;
+			private String loc;
+		}
+	2) jsp
+		요청값을 기능메소드에 매개변수 Emp 객체로 넘기기 위해서 new Emp(요청값 ...)
+		순서와 타입을 정확하게 확인..
+		- 조건 : 데이터가 입력되었을 때
+			String isIns = "N";
+			if(empnoS!=null && !empnoS.trim().equals("")){
+				dao.insertEmp(new Emp(####));
+				isIns = "Y";
+			}
+		- confirm 등록 되었을 표시
+			계속 등록할지? 등록된 전체 조회화면으로 갈지를 설정
+			자바 => javascript
+			var isIns = "<%=isIns%>";
+			if(isInt=="Y"){
+				// confirm() : true/false
+				if(confirm("등록 성공\n조회화면으로 이동하시겠습니까?")){
+					location.href="a01_empSchList.jsp";
+				}
+			}
+# 사원정보상세화면(수정/삭제할 수 있는 화면)
+1. 업무 처리 순서
+	row단위로 클릭 시, row에 있는 key empno를 기준으로 데이터를 검색해서
+	상세화면이 로딩되어 저장된 데이터를 출력한다
+	데이터를 변경 후 수정 버튼 클릭 시 수정이 처리되고,
+	삭제버튼 클릭 시, row단위로 삭제가 처리되고 화면이동 처리된다.
+2. 상세화면 로딩
+	1) dao 기능메소드 만들기
+		sql : select * from emp where empno = @@@
+		Emp객체를 가져온다
+	2) 상세화면 전환 사용자 인터페이스 정의
+		테이블 리스트에서 특정한 row를 더블클릭시 key를 가져와서 상세화면으로 이동처리
+		tr onclick="goDetail(1000)"
+		function goDetail(empno){
+			location.href="a03_empDetail.jsp?empno="+empno;
+		}
+		- 상세화면 구성 : 요청값을 key를 받을수 있게..
+	3) a03_empDetail.jsp(상세화면)
+		String empnos = request.getParameter("empno");
+		int empno = 0;
+		if(empnos!=null && !empnos.trim().equals("")){
+			empno = Integer.parseInt(empnos);
+		}
+	4) 상세화면 form 화면 구성
+	5) Dao에서 만든 기능 메소드를 통해서 받은 Emp 객체를 getXXX()
+		value="<%=emp.getEmpno()%>"
+	
+	
+3. 수정 처리
+	1) 수정 처리하는 dao 기능메소드
+	2) 수정 버튼 클릭시, form은 내용 전송 및 요청값 받기
+		수정버튼 ==> 수정 DAO 처리
+		삭제버튼 ==> 삭제 DAO 처리
+		<input type="hidden" name="proc"/>
+		var procObj = document.querySelector("[name=proc]");
+		procObj.value="upt";
+		procObj.value="del";
+		?proc=upt
+		?proc=del
+		String proc = request.getParameter("proc");
+		if(proc.equals("upt")){
+			//수정처리DAO
+		}
+		if(proc.equals("del")){
+			//삭제처리DAO
+		}
+	3) 요청값 처리하기
+		요청값 ==> Emp upt = new Emp(....)
+	4) 요청값이 proc가 있고 upt일때
+		dao.uptEmp(upt);
+		다시 수정 후 조회된 데이터 가져오기
+		emp = dao.getEmpDetail(empno);
+	5) js : java코드와 javascript는 아래 형식으로 데이터를 받아처리할 수 있다
+		var proc = "<%=proc%>";
+		if(proc!=""){
+			if(proc=="upt"){
+				if(confirm("수정되었습니다\n리스트화면이동?")){
+					location.href="";
+				}
+			}
+		}
+
+4. 삭제 처리
+	1) DAO
+		delete * from emp01 where empno=?
+	2) 삭제버튼 클릭시 
+		function delEmp(){
+			var procObj = document.querySelector("[name=proc]");
+			procObj.value="del";
+		}
+	3) 요청값 처리
+		if(proc.equals("del")){
+			dao.delEmp(empno);
+		}
+	4) script단 처리
+		if(proc=="del"){
+			alert("삭제처리되었습니다\n조회화면으로 이동합니다");
+			location.href="a01_empSchList.jsp"
+		}
+
+4. 등록 처리 요청값 호출
+
+
+
+# 사원정보리스트 등록/수정/삭제
+1. 기초개념이해
+	1) 서버단 프로그램,	클라이언트 프로그램의 역할과 진행 순서에 대한 이해
+			브라우저 ==> 서버
+		- 클라이언트 프로그램 : HTML태그, CSS, JS
+			화면을 구성하고, 동적인 이벤트를 처리할 때 사용된다
+		- 서버단 프로그램 : jsp : html안에 여러 로직으로 java코드가 들어가 있고
+			이 java코드를 통해서 DB연결된 코드를 전달하여 최종html을 구성
+		
+	2) 클라이언트단 프로그램 주요 핵심 코드
+		- 이벤트 onclick="함수", ondblclick, onkeyup, ..
+		- 핸들러함수
+			function sendServer(){
+				var enameObj = document.querySelector("[name=ename]")
+				if(enameObj.value==""){
+					alert("입력하세요")
+					return
+				}
+				document.querySelector("form").submit();
+			}
+			
+		- 요소 객체에 대한 접근
+			var h1 = document.querySelector("선택자")
+			var txt1 = document.querySelector("선택자")
+			document.querySelectorAll("선택자")
+			선택자 : #아이디명, .클래스명, 태그명, [속성=속성값]
+			속성 : 기본태그의 속성	h1.align="center"
+			속성 : css의 속성		h1.style.backgroundColor="yellow";
+			속성 : value			text1[0].value="안녕하세요"
+			화면출력 : innerHTML, innerText;
+				h1.innerHTML = "<h1>랜더링할 문자열</h1>"
+				h1.innerText = "문자열 출력"
+		
+		- 이동 처리 : location.href="이동할 페이지";
+			
+	3) 서버단 프로그램 주요 핵심 코드
+		String req = request.getParameter("요청키")
+		if(req==null) req=""
+		if(req!=null && !req.trim().equals("")) empno = Integer.parseInt(req);
+		empList = dao.getEmpList(emp);
+		<% for(Emp e:empList){%>
+			<%=e.getEmpno()%>
+		<%}%>
+		
+	4) 서버단 ==> client
+		var isIns = "<%=isIns%>";
+		if(isIns=="ins"){
+			if(confirm("등록완료")){
+			
+			}
+		}
+	# DAO 프로그램
+	1. sql select *(empno, ename, job, mgr, hiredate, sal, comm, deptno) from emp01 
+			where ename like '%'||?||'%'
+			and job like '%'||?||'%'
+	2. vo : *, ? 에 할당할 데이터를 속성으로 해서 vo 클래스를
+		class Emp{
+			private int empno;
+			private String ename;
+			private String job;
+			...
+		}
+	3. 리턴값 유형 결정, 매개변수로 들어갈 객체결정
+		public ArrayList<Emp> getList(Emp sch)
+		public Emp getDetail(int empno)
+		public void insertEmp(Emp ins)
+		
+	4. pstmt.setXXXX(1, @@@);
+	5. select 컬럼명 경우, ResultSet rs
+		.next()
+		.getXXXX("컬럼명")
+	6. rs.getXXX() ==> 리턴할 객체에 할당
+	
+	
+2. 사원정보 처리 프로세스
+	a01_empSchList.jsp(사원정보 메인 조회 프로그램)
+		검색 사원명[	] 직책명[		] [검색]
+		데이터 리스트
+		리스트 중 하나 클릭시 ==> 사원상세화면으로 empno 요청값 전달
+		등록버튼 클릭시 ==> 사원정보등록
+	
+	a02_empInsert.jsp(사원정보 등록)
+		form형식으로 데이터 전송하게 처리
+		submit했을때 dao를 호출해서 입력 ==> 리스트화면 확인
+		
+	a03_empDetail.jsp(사원정보 상세)
+		empno를 요청값으로 가져와서
+		dao를 통해서 1개 row데이터 vo객체로 가져와서
+		value에 할당 처리한 상황에서
+		수정버튼시 수정프로세스 check <input type="hidden" name="proc" value="upt>
+			==> 요청값 전달 수정dao 기능메소드 처리
+		삭제버튼시 삭제프로세스 check
+			처리 삭제 기능메소드 호출
+		script를 통해서 수정/삭제 표시
+	
+	메인리소스 조회 ==> 등록 처리
+				==> 상세 화면 ==> 수정
+							==> 삭제
+
+
+3. 프로그램 수행 순서
+	리스트 메인 : url로 호출시 서버에있는 a01_empSchList.jsp를 호출,
+			dao단에 있는 데이터 가져와서 기본 list 출력 처리
+			조건 입력시, 조회버튼 클릭시, 요청값으로 조회데이터(ename, job)전달하고
+			ename, job ==> Emp(ename, job) dao의 검색메소드의 매개변수를 넣어
+			ArrayList<Emp> 데이터를 가져와서 반복문을 통해서 출력
+			등록버튼클릭, location.href="등록화면"을 통해서 등록화면 호출
+				등록화면에서 입력하고 등록버튼 클릭시 요청값을 전달하고 요청값을 
+				Emp로 데이터를 할당하여 등록dao기능메소드 호출로 dao.insertEmp(emp);
+				로 데이터 등록처리, script등록처리 완성 여부 출력
+			리스트 중 특정 데이터 클릭시, 상세페이지에 요청값과 함께 전달
+				dao에서 상세데이터 로딩 메소드를 통해서 row단위 vo객체 emp를 가져와서
+				화면에 value에 할당하여 출력한다. value="<%=emp.getEname()%>"
+				데이터 form요소객체서 변경하고 하단에 수정버튼 클릭시, 요청값으로 proc와 함께
+				데이터를 다시 전송해서 등록할 vo를 만들어 등록메소드의 매개변수로 전달하고
+				등록처리, script로 등록처리 출력
+				삭제버튼 클릭시, proc 삭제 del을 처리하고 empno를 전송하여
+				요청값으로 del과 empno를 받아서 삭제 dao기능메소드 호출하여 삭제처리
+				script처리(삭제되었습니다)
+
+4. 개발 순서
+	1) 요구사항정의서
+	2) 화면설계서
+	3) db처리내용, erd, sql작성
+	4) 리턴값, select값을 처리할 VO객체 작성
+	5) dao 작성
+		리턴값(객체), 매개변수
+		객체에 할당 처리는 resultSet의 기능메소드로 할당
+	6) html/css기본화면
+	7) js구성(jsp) - 위 프로그램 호출 순서에 맞게 js와 jsp를 처리한다.
+		유효성 처리
+	8) 요청값 처리
+	9) dao를 호출하여 처리
+	10) 마지막 js 프로세스 완료 처리를 출력
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

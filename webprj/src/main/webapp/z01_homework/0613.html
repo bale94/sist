@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 
+[1단계:개념] 1. 자바스크립의 처리형식(내부,외부,url)의 기본예제를 통해 호출하는 형식을 기술하세요.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chFun(func){
+		func.innerText="넵"
+		func.style.backgroundColor="blue";
+	}
+	function chColor(obj){
+		// obj : window창 전체 객체를 넘긴다
+		//obj.document.body.style.backgroundColor="brown"
+		alert("호출")
+		obj.style.color="pink";
+	}
+
+</script>
+<script type="text/javascript" src="z01_sample.js"></script>
+</head>
+<body>
+	<h2 onclick = "this.innerText='한라인명령' ">안녕하세요</h2>
+	<h2 onclick="chFun(this)">안녕하세요</h2>
+	<h3 onclick="call()">외부호출</h3>
+	<a href = "javascript:chColor(this)">자바스크립트 실행</a>
+</body>
+</html>
+
+[1단계:확인] 2. 외부파일 z02_sample.js에 함수를 정의하고, 현재파일에 h2를 클릭시, 해당 함수를 호출처리하는 코드를 만드세요.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="z02_sample.js"></script>
+<body>
+	<h2 onclick="recall()">CLICK</h2>
+</body>
+</html>
+
+[1단계:확인] 3. prompt를 활용하여 아이디와 패스워드를 입력하여 출력하세요.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<h2></h2>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+
+</body>
+<script type="text/javascript">
+var id = prompt("ID","")
+var pass = prompt("PASSWORD","")
+
+var h3Arry = document.querySelectorAll("h3")
+h3Arry[0].innerText="ID: "+id
+h3Arry[1].innerText="PASS: "+pass
+</script>
+</html>
+
+[1단계:개념] 4. DOM객체 호출 방법 중, 단일 태그, 다중의 태그를 호출하는 방식의 차이를 예제를 통하여 기술하세요.
+단일태그 : querySelector을 사용
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<h2></h2>
+</body>
+<script type="text/javascript">
+var ret = prompt("저리가세요", "훠이")
+document.querySelector("h2").innerText = "안가셨네요?"+ret
+</script>
+</html>
+다중태그 : querySelectorAll을 사용 -> 문제3번이 다중태그
+
+[1단계:개념] 5. DOM기능 속성가운데 innerText, innerHTML의 차이를 기술하세요.
+innerText는 text내용을 출력해주고 innerHTML은 코드를 읽어서 해석하여 값을 보여준다
+
+[1단계:확인] 6. prompt 창을 통해서 입력받은 국어, 영어, 수학 점수를 입력받아 합산과 평균을 처리하세요.
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+</script>
+</head>
+<body>
+	<h2></h2>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+
+</body>
+<script type="text/javascript">
+var kscore = prompt("korscore","")
+var escore = prompt("engscore","")
+var mscore = prompt("matscore","")
+
+var tot = eval(kscore+"+"+escore+"+"+mscore);
+var avg = eval(tot/3)
+alert("총합: "+tot)
+alert("평균: "+avg)
+</script>
+</html>
+
+[1단계:개념] 7. js의 데이터 유형 5가지를 예제를 통하여 설명하세요
+var num01 = 10
+var num02 = 20.30	-> number
+var isPass = num01>=50 -> boolean
+var str = "홍길동" -> string
+var plus = function(num01, num02){ -> function
+	return num01+num02
+}
+var obj = {name:"홍길동", age:20} -> object
+
+[1단계:개념] 8. js에서의 함수에서 지역변수와 전역변수를 구분하여 코드로 설명하세요.
+var을 사용한다면 지역변수로 선언되지만 함수밖에서 선언하면 전역변수로 선언된다.
+var num01=10
+function number(){
+	var num01 = 15
+	console.log(num01)
+}
+console.log(num01)	==> 전역변수인 10이 호출됨
+number();	==> 함수가 호출되므로 함수내의 지역변수인 15가 호출됨
+
+[1단계:확인] 9. 클릭시 마다, 번호가 올라가는 함수 호출 기능을 위 지역/전역변수로 처리하세요.  
+                카운트업(클릭)
+                1...
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var sum=1;
+function tot(sum){
+	 this.sum+=sum;
+	 console.log(this.sum+":"+sum)
+	 document.querySelector("h5").innerText = "총계: "+this.sum
+}
+</script>
+</head>
+<body>
+	<h4 onclick="tot(1)">연산</h4>
+	<h5></h5>
+</body>
+</html>
+-답변
+<script>
+	var cnt=1;
+	function countUp(){
+		var h3Obj = document.querySelector("h3")
+		h3Obj.innerText=cnt++;
+	}
+</script>
+<h2 onclick="countUp()">카운트업(클릭)</h2>
+<h3>0</h3>
+
+[1단계:개념] 10. <input name="num01"/>의 DOM객체를 접근하는 형식과 여기에 있는 value값을 가져오는 방법을 기술하세요.
+	입력값<input name="num01" value="0"/>
+	<script type="text/javascript">
+		document.querySelector("input[name=num01]").value="777";
+	</script>
+
+[1단계:확인] 11. 아이디:[   ][확인] 확인을 클릭했을 때, 입력한 id를 alert()으로 출력되게 하세요.
+	<script>
+		function call(){
+			var idObjVal = document.querySelector("[name=id]").value
+			alert("입력한 id:"+idObjVal)
+		}
+	</script>
+	아이디:<input type="text" name="id"/>
+	<input type="button" value="확인" onclick="call()"/>
+
+[1단계:개념] 12. jsp의 구성요소에 대하여 기술하세요.
+- 디렉티브(directive)
+- 스크립트(jsp에서 자바코드) : scriptlet(<% %>),
+	expression(<%= %>), declaration(<%! %>)
+- 표현언어(expression language)
+- 기본 객체(implicit object)
+	request, response, session
+- 정적인 데이터
+- 표준액션태그
+- 커스텀 태그와 표준 태그 라이브러리(jstl)
+
+[1단계:확인] 13. jsp의 scriptlet과 expression을 활용하여 구구단의 2단~9단까지 테이블 td안에 넣어 출력하세요.(이중 for문 활용)
+<!DOCTYPE html>	//-> a01_webApplication 에서 실행해봤음 (jsp라서)
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>구구단</h2>
+	<input type="text" name="grade"/><br>
+	<input type="button" value="구구단 출력" onclick="gugu()">
+	<table border>
+		<%for(int cnt=1;cnt<=9;cnt++){%>
+		<tr>
+			<%for(int grade=2;grade<=9;grade++){ %>
+			<th><%=grade%>X<%=cnt%>=<%=grade*cnt%></th>
+			<%}%>
+		</tr>
+		<%}%>
+	</table>
+</body>
+	<script type="text/javascript">
+		function gugu(){
+			var grade = document.querySelector("input[name=grade]").value//input을 생략할 수 있다.
+			var addHTML = ""
+			for(grade=2;grade<=9;grade++){
+				for(cnt=1;cnt<=9;cnt++){
+					console.log(grade+" * "+cnt+" = "+(grade*cnt))
+					addHTML += "<tr><td>"+grade+" * "+cnt+" = "+(grade*cnt)+"</td></tr>"
+				}
+			}
+			console.log(addHTML)
+			document.querySelector("table").innerHTML = addHTML
+		}
+	
+	</script>
+</html>
+ -->
+</head>
+<script type="text/javascript" src="z02_sample.js"></script>
+<body>
+	<h2 onclick="recall()">CLICK</h2>
+	<h2>id입력</h2>
+	ID:<input type="text" name="id" value=""/><br>
+	<input type="button" value="확인" onclick="call()">
+	
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	<h3></h3>
+	
+	
+</body>
+<script>
+	function call(){
+		var id = document.querySelector("input[name=id]").value
+		alert("ID: "+id)
+	}
+</script>
+<script type="text/javascript">
+var kscore = prompt("korscore","")
+var escore = prompt("engscore","")
+var mscore = prompt("matscore","")
+
+var tot = eval(kscore+"+"+escore+"+"+mscore);
+var avg = eval(tot/3)
+alert("총합: "+tot)
+alert("평균: "+avg)
+</script>
+</html>

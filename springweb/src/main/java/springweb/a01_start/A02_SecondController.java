@@ -1,0 +1,15 @@
+package springweb.a01_start;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class A02_SecondController {
+	// http://localhost:7080/springweb/second.do
+	@RequestMapping("/second.do")
+	public String second(){
+		// 처리할 controller 내용
+	
+		return "WEB-INF\\views\\a02_view.jsp";
+	}
+}

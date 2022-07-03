@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+	# 이미지 호출방법
+	1. 상대적 주소 : 저장된 html/jsp를 기준으로 소스나 자원(img) 접근할 때 사용된다
+		1) 현재파일과 같은 폴더는 이미지명으로 바로 접근 가능
+		2) 상위폴더 접근 : 
+			../img02.jpg
+		3) 하위폴더 접근 : 
+			img/img03.jpg
+			
+	2. 절대적 주소
+		웹 서버를 실행 시켰을 때, default 폴더 기준으로 접근
+		http://localhost:7080/webprj
+		\webprj\src\main\webapp
+		1) 프로젝트경로명/경로위치를 설정
+		file:// : 파일시스템으로 접근하는 경우 : 현재 서버의 파일시스템 기준
+			
+		
+	3. 이미지 속성값
+		src : 이미지 파일 url
+		alt : 문자열 - 이미지가 안보일 때
+		width : 폭
+		height : 높이
+	 -->
+	 <h2>상대적 주소로 접근한 경우</h2>
+	<img src="img01.jpg">
+	<img src="../img02.jpg">
+	<img src="img/img03.jpg">
+	<h2>절대적 주소로 접근</h2>
+	<h3>현재 server를 기준</h3>
+	<img src="/webprj/a01.html/a01_start/img01.jpg">
+	<!-- 프로젝트명/폴더명/해당이미지 -->
+	<img src="/webprj/a01.html/img02.jpg">
+	<img src="/webprj/a01.html/a01_start/img/img03.jpg">
+	<h3>외부 server를 기준</h3>
+		<!-- 인터넷이 될 때 가능
+		이미지링크복사 를 통해 사용가능
+		 -->
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtB8kPXpSB_vP5WFgdrm2tYSqwW2ge2Q66vTcC6iv458jyJWS3NxtJvnYsJlGq_Lj2ujI&usqp=CAU">
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvgvopyMZuK-SAK627G2TbSPLF07_xKja1Hw&usqp=CAU">
+</body>
+</html>

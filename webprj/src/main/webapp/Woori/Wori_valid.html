@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+ 	function send(){
+		var accountNum = document.querySelector("[name=accountNum]");
+		if(accountNum!=null){
+			if(accountNum.value==""){
+				alert("계좌번호를 입력하세요")
+				accountNum.focus();
+				return
+			}else{
+				if(accountNum.value.length!=13){
+					alert("계좌번호는 13자리입니다")
+					accountNum.focus()
+					accountNum.value=""
+					return
+				}
+			}
+		}//계좌번호 맨앞이 1002여야함
+		var name = document.querySelector("[name=name]")
+		if(name.value!=null){
+			if(name.value==""){
+				alert("이름을 입력하세요")
+				name.focus()
+				return
+			}else{
+				if(name.value.length>8||name.value.length<3){
+					alert("이름은 3~8자 사이로 입력가능합니다")
+					name.value=""
+					name.focus()
+					return
+				}
+			}
+		}
+		var PW = document.querySelector("[name=PW]")
+		if(PW.value!=null){
+			if(PW.value==""){
+				alert("비밀번호를 입력해주세요")
+				PW.focus()
+				return
+			}else{
+				if(PW.value.length!=3){
+					alert("비밀번호는 3자리입니다\n 다시 입력해주세요")
+					PW.focus()
+					PW.value=""
+					return
+				}
+			}
+		}// 비밀번호는 꼭 숫자여야함
+		document.querySelector("form").submit()		
+	}
+</script>
+</head>
+<body>
+	<h2 style="text-align:center;">회원가입 유효성 체크</h2>
+	<form action="Wori_validReg.jsp" method="post" style="text-align:center;">
+		계좌번호:<input type="text" name="accountNum"/><br>
+		이름:<input type="text" name="name"/><br>
+		비밀번호:<input type="password" name="PW"/><br>
+		<input type="button" value="회원가입" onclick="send()"/>
+	</form>
+</body>
+</html>

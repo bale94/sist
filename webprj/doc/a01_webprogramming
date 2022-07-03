@@ -1,0 +1,321 @@
+# 웹 프로그래밍 내용 계열화
+1. 네트워크 환경에 대한 이해
+	웹이란 무엇인가?
+	ip란 무엇인가?
+	웹에서 서버 클라이언트란 무엇인가?
+		네트워크 환경에 ip/도메인을 활용하여 클라이언트(브라우저)가 서버(웹서버-톰캣)에 ip로 접근하여 html내용을 받아 화면에 보여주는것이
+		웹 서비스이다.
+2. 웹서버 구축
+	웹 프로젝트 생성
+	tomcat 웹 서버 구축
+		ip, port 저장 및 웹프로젝트와 연동 처리
+3. 웹프로그래밍 처리 방식에 대한 이해
+	1) frontend단 프로그램 처리 방식
+		html/css/js 코드 작성
+		브라우저에서 확인
+	2) backend 프로그래밍 처리 방식
+		jsp 코드 작성
+		변환된 html 확인
+		백엔드프로그램으로 DB연동, 자바프로그램으로 룆ㄱ처리하여 최종 결과인 html 코드를 client인 브라우저를 통해 전달해주고
+		이 브라우저는 전달된 html코드를 파싱(해석)하여 화면에 출력하여 사용자로 하여금 볼 수 있게한다.
+4. 웹프로그램 코드 순서
+	1) 웹프로젝트 생성
+	2) webapp 하위에 html/jsp 파일 생성
+	3) 필요한 tag/js/css 처리
+	4) java 코드 처리
+	5) 웹 서버와 연동된 환경하에 실행 처리
+	6) 결과 확인
+	
+5. 각 프로그래밍 별로 연동 처리하기
+	1) 초기화면구성 : html
+	2) html에서 확장된 색상/크기/위치지정 : CSS
+	3) html/css를 함수를 통해서 동적인 변경 : javascript
+	4) jsp : 위에있는 html/css/javascript를 java코드와 함께 서버에서 만들어서 
+		client(브라우저)에 보내주는 역할을 한다
+	# 실제 각 프로그램 처리 순서
+	1) [was-서버단]jsp ==> java(servlet) ==> html/css/js만들어 클라이언트에 전달
+	2) [클라이언트단]
+			html/css ==> 화면구현
+			html(태그) ==> DOM ==> js처리(동적인처리)
+		
+# 웹프로그램의 자원에 대한 접근
+1. 상대주소 절대주소에 대한 이해
+	1) 상대경로/절대경로
+	2) 절대주소 설정으로 모든 자원에 대한 접근 처리
+		webapp하위를 기준경로로 설정되고, 이것을 서버로 시작되었을때
+		http://localhost:7080/프로젝트명/
+	3) 공통 자원 접근 설정
+		js/css/img
+		webapp/com 폴더로
+		webapp/img 폴더로
+		다른소스를 접근할 때
+		String path = request.getContextPath()
+		<%=path%> : 모든 프로그램에서 webapp하위에 접근할 수 있는 경로로 지정하기에
+		<a href = "<%=path%>/경로/파일명/페이지.jsp">
+		<img src = "<%=path%>/img/img01.jpg">
+		<link href = "<%=path%>/com/com01.css">
+		<script src = "<%=path%>/com/com.js">
+
+2. link 처리에 대한 내용
+	1) 절대주소/상대주소로 페이지 이동하기
+	2) target옵션에 대한 내용 처리
+	3) frame을 통한 화면처리
+		- navigation bar에 대한 css 처리
+		- frame에 대한 접근 처리와 메뉴화면 구성
+		
+# server/client 프로그램
+1. client(브라우저) <==> server(톰캣) - web application container
+	1) [클라이언트]브라우저에 URL을 입력하면 (페이지)
+		http://localhost:7080/webprj/a02_javascript/a01_basic.html
+		http://212.31.21.131:7080/webprj/a02_javascript/a01_basic.html
+		http://www.prog.com/webprj/a02_javascript/a01_basic.html
+	2) [서버]해당하는 페이지를 client에 전송한다(html)
+		- html
+			html(css, html태그, javascript)
+		- jsp
+			==> servlet.java ==> response로
+			response.getWriter().print("html태그"+java변수 객체)
+			를 통해서 stream으로 최종적으로 html을 만들어서 브라우저에 준다.
+	3) [클라이언트]html을 받아서 브라우저에서 랜더링
+			태그는 각 기능에 맞게 화면을 보여주고, img 보여주고
+			javascript 함수를 선언한 상황에 이벤트 처리(클릭, 키보드입력, 마우스오버 등) (그냥 html에 있는 함수값을 보여줄뿐이다 jsp는)
+	4) [클라이언트]서버로 받은 html태그에서 form요소에서 데이터를 입력하고
+			type="submit" ==> 유효성check ==> type="button" onclick="함수()"
+			function 함수(){
+			// 유효성 check
+				if(조건){
+					return;	//그 다음 라인 진행을 중지
+				}
+				document.querySelector("form").submit();
+			}
+		form action="호출할페이지"있는 경우 호출할페이지?key=value
+		form 없는경우 현재페이지?key=value
+	5) [서버]호출한 페이지(action의 속성값으로 있는 페이지)에서 받아서 query string으로 요청된 내용을
+			String 요청값을받을변수 = request.getParameter("요청key")
+			ex)
+			DB접속(DAO) 데이터를 확인
+				- 보여줄 페이지를 조건문에서 결정하여 다시 client에 전송
+				성공 - main.jsp보여주기
+				실패 - login.jsp보여주기
+	6) [클라이언트] 위 조건에 따라 다른 페이지가 전달되어진다
+		
+		
+# html/css/javascript/jsp의 역할과 프로세스
+1. [브라우저프로그램]html : 웹화면을 구성하는 기본 태그를 선언한다. 태그는 브라우저에서 랜더링되어 화면에 표현된다.
+2. [브라우저프로그램]css : html기본태그로 지원하지못하는 정렬, 크기, 동적인 처리 등을 
+		선택자(태그, .클래스, #아이디명, 태그[속성=속성값], ..){속성:속성값;속성2:속성2값; ..}
+		형식으로 확장하여 화면에 처리해준다
+3. [브라우저프로그램]javascript : 함수, 객체, 변수 설정으로 html/css의 태그를 동적으로 처리한다
+		DOM(태그를 객체로 인식해서 속성을 변경함으로서 동적인 처리하는 것을 말한다)
+			document.querySelector("태그")
+			document.querySelectorAll("다수의태그")
+			.innerText, .innerHTML, .value
+			속성 = 속성값, style.css속성 = css속성값
+			.onclick=function(){ // 이벤트 처리
+			}
+4. [WAS프로그램]jsp/java : client에서 호출되어진 페이지를 java+html을 활용(스크립트-scriptlet, expression)하여
+		최종적으로 html(태그,css,js)을 만들어서 브라우저에 response로 전송한다
+		- 조건에 의해서 다른 페이지를 보여주거나, 반복문을 통해서 반복인 html태그를 처리해준다
+		- dao를 통해서 DB있는 데이터를 java+html를 통해서 화면에 출력한다
+
+# 웹프로그램 순서
+0. 요구사항 확인 : 화면, 요청값, java단 처리
+1. 출력할 html코드화면 구성
+2. js에서 처리할 부분 처리
+3. java핵심코드 구현 <%%>
+4. html이나 js에서 처리하는 script를 위치를 지정
+5. 자바의 변수, 핵심로직을 script안에 복사해서 처리
+
+# 주요 핵심키워드
+1. html form
+	<input type="@@@" name="###" value="$$"/>
+	<select>
+		<option value="@@">@@@</option>
+	<textarea> ..
+	<form action="@@" method="get/post">
+		<input type="submit"/>
+		<input type="button" onclick="함수()"/>
+2. javascript
+	var obj = document.querySelector("태그")
+	var arry = document.querySelectorAll("태그")
+	obj.innerText
+	obj.innerHTML
+	<input type="" value="">
+	obj.value
+	obj.align = "center";	//태그의 기본속성<h1 align="">
+	obj.src = "img01.jpg";	//태그의 기본속성<img src="">
+	obj.style.backgroundColor="red"
+		//태그의 inline style속성 <h1 style="background-color:red;"
+	document.querySelector("form").submit();
+		// form type="submit" 클릭했을때와 동일
+	obj.onclick=function(){	이벤트처리 <h2 onclick="call()">
+		this.style.backgroundColor="yellow";
+	}
+	if(){
+		return;
+	}
+	
+
+
+# 최고로 많이 나오는 에러
+1. js
+	기본적으로 동작을 하지않을때 f12로 console부분을 확인해서 에러내용을 확인한다.
+	해당 line확인하고 변경 저장후 f5로 브라우저를 refresh해서 확인한다.
+	Cannot read properties of null(reading 'value')
+	DOM의 선택자 부분 확인
+	데이터가 정상적으로 나오지 않을땐 속성을 혼동해서 처리한경우가 대부분
+		priceObj.value가 아닌
+		priceObj.innerText 같은것들로 처리한경우
+		
+	Uncaught ReferenceError: ~~~ is not defined
+	: 내장 객체, 내장 함수에 오타가 있는 경우
+	
+	Uncaught TypeError : @@@ is not a function
+	:해당하는 키워드의 입력오류
+	
+	Cannot read properties of null(reading 'value')
+	: 해당 dom 선택자를 잘못 지정시
+		document.querySelector("선택자..")
+	
+# 프로젝트 진행에 필요한 [고정ip] 설정
+1) 고정ip의 필요
+	vpn
+	사용할 서버에 실행 - 연결된 ip로 svn, 웹서버 DB서버처리가 가능하다
+	조별로 고정ip 처리할 조
+	
+	
+2) svn설정
+	서버 : visual svn server 구글에 검색해서 설치(server가 있는 pc)
+	https://고정ip/svn/저장소	https://desktop-bpp6jf4/svn/webprj01
+	https://106.10.23.227/svn/webprj01	prj_user01/1111
+	
+	클라이언트 : 
+
+
+3) 웹서버 설정
+	- 웹서버를 실행 : 고정 아이피가 있는 곳에서 웹서버를 실행
+	
+	
+
+4) DB서버설정
+	- 프로젝트 진행 계정 만들기
+# 서버 담당자 pc에서 system/1111 계정으로 접근해서
+1. 프로젝트에서 사용할계정을 위와같이 만들고
+GRANT CONNECT, resourse, unlimited tablespace TO project01 IDENTIFIED BY 1111;
+2. 접속해서 간단하게 테이블을 만든 후 외부에서 접속해서 데이터베이스를 사용할 수 있는지 여부 확인
+conn project01/1111;
+create table tab01(name varchar2(50));
+insert into tab01 values('홍길동')
+commit;
+select * from tab01;
+
+
+# 웹화면에서 Data처리하기
+1. 개발 순서
+	1) 어떤 기능과 화면을 가지고 처리를 할건지를 요구사항 건의를 통해서 정의한다
+	2) 화면설계
+	3) 데이터처리 sql활용
+		- erd 작성
+		- 테이블 구성
+		- sql 작성
+	4) DAO처리
+		- 사용하게될 sql의 결과 처리할 VO 클래스 만들기
+		- DAO 생성
+			- 공통 기능 메소드 연결객체
+			- 기능메소드 - 처리할 기능
+				- return, 매개변수 처리
+				- 연결/대화객체/결과객체를 만들고 예외처리를 한 뒤 이를 바탕으로 처리를 한다.
+		# DAO 처리시, 유의사항
+		1. 에러대비 : sql System.out.println() 반드시 확인
+		2. ?와 mapping되는 데이터 갯수, type(유형), null
+		3. rs.getInt("empno") : select은 선택 컬럼명과 타입 
+		
+	5) 화면구성(jsp)
+		- 기본 html/css 구성
+		- js 필요내용 구성(DOM객체 활용)
+		- java프로그램처리
+			- import
+			- 스크립트 처리하기
+				- scriptlet, expression 구성
+				- 조건/반복문을 활용해서 해당 내용 처리
+		- 기능테스트 확인
+
+# 웹화면에서 DB연동한 처리 내용 계열화
+1. form 객체요청 처리에 대한 이해와 활용
+	name	value
+	을 활용해서 query 페이지?key=value
+	1) request.getParameter("key")
+		null 처리/ 숫자
+		개념 이해
+	2) 초기화면에 위 데이터가 어떻게 나오는지, 요청값을 처리했을 때 어떻게 데이터가 처리되는지 이해
+2. DAO에 대한 이해
+	1) 위 요청값에 의해 sql을 처리하여 그 결과를 나타내는 부분
+	select *
+	from emp
+	where ename like '%' || ? || '%'
+	and job like '%' || ? || '%'
+	2) 요청값을 메소드의 매개변수로 할당하고 그 할당된 내용을 처리하여 결과를 출력
+		public ArrayList<Emp> getEmpList(String ename, String job)
+			변수로 데이터 할당해서 처리
+		public ArrayList<Emp> getEmpList(new Emp(ename, job))
+			객체로 데이터 할당해서 처리
+			
+3. 요청값과 DAO 연동 처리
+	1) 화면 출력 패턴
+		- 초기화면
+			전체 데이터가 로딩되어 시작하는 경우
+			데이터가 없이 로딩되어 있다가 검색을 누른 경우 출력 처리
+			==> 요청값을 어떻게 처리하느냐에 따라 구분된다
+	2) 요청값 처리 프로세스
+		request.getParameter("ename")
+		-Q) 위 내용을 jsp 화면이 처음 로딩될때 데이터값이 있는가??
+			url 초기 empList.jsp 요청값이 없기에 null로 처리
+		-Q) empList.jsp?ename=himan
+			query string으로 데이터를 넘겨주는게 핵심 !!
+			js) location.href="empList.jsp?ename=himan"
+			jsp) response.sendRedirect("empList.jsp?ename=himan"); 둘다 궁극적으론 데이터를 넘겨준다
+		-Q) form에서 자동으로 위와 같이 query string으로 변경해준다
+			<form>
+				<input type="text" id="ename" value="himan"/> (X)
+				js) document.querySelector("#ename").value
+					접근이 가능하나 요청값은 처리가 안된다
+				submit버튼을 클릭하면 데이터전송이 되는가?
+				안된다!!! 핵심은 'id'속성값이 아니라 'name'속성값이기 떄문!!!!!
+				- <input type="text" name="ename" value="himan"/>
+				이 데이터전송이 되는 구문이다!!!
+				<h1 name="job" value="홍길동"> ->이것또한 안넘어간다
+				input값으로 두는것이 첫쨰!!!!!
+				form 하위에 있는 form형식 요청객체가 아니기에 전송이 되지않는다
+				input, select, textarea형식으로 되어있고!!
+				그 후에 name 속성과 value로 값이 지정되어야 전송이된다.
+			
+	3) 초기 데이터 로딩 처리 여부
+		- 초기에 요청값이 없을 때 전체검색
+			String ename = request.getParameter("ename")
+			if(ename==null) ename=""; // 초기에 값이 없기에 문자열로 공백이 설정된다.
+			
+			dao.getEmpList(ename,job);
+			String sql = "SELECT * \r\n" +
+						 "from emp01 \r\n" +
+						 "WHERE ename LIKE '%' || ? || '%' \r\n" +
+						 "AND job LIKE '%' || ? || '%'";
+			? 에 공백이 들어가서
+			Where ename like '%'||''||'%'
+			이 들어가서 전체검색이 된다.
+			where ename like '%' ||null|| '%' -> 에러발생!!!
+		- 초기에 요청값이 없을 때 데이터 없이 검색
+			if(ename!=null){
+				null일때는 검색자체를 하지않음!!
+				dao.getEmpList(ename,job);
+			}
+		
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	

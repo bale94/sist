@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+h1{
+	color : DodgerBlue;
+	font-size : 40px;
+}
+h2{
+	color : white
+}
+.DodgerBlue-box{
+	position : static;
+	text-align: center;
+	font-size : 10px;
+	background : DodgerBlue;
+	 height: 20px;  
+  	 width: 3%;
+ 	 left: 1px;
+ 	 top: 20px;
+}
+.box {
+	text-align: center;
+	color : white;
+	background : DodgerBlue;
+	float: left;
+	width: 5%;
+	padding-left: 50px;
+	padding-right: 50px;
+	margin : 50px;
+
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+	<img src="wori.PNG">
+	<h1>개인</h1>
+	<h2 class = "DodgerBlue-box">로그인</h2>
+<div class="clearfix">
+  <div class="box">
+  <p>조회</p>
+  </div>
+  <div class="box">
+  <p>이체</p>
+  </div>
+  <div class="box">
+  <p>오픈뱅킹</p>
+  </div>
+</div>
+<div class="clearfix">
+  <div class="box">
+  <p>공과금</p>
+  </div>
+  <div class="box">
+  <p>예금/신탁</p>
+  </div>
+  <div class="box">
+  <p>펀드</p>
+  </div>
+</div>
+<div class="clearfix">
+  <div class="box">
+  <p>보험/대출</p>
+  </div>
+  <div class="box">
+  <p>외환골드</p>
+  </div>
+  <div class="box">
+  <p>뱅킹관리</p>
+  </div>
+</div>
+
+</body>
+</html>

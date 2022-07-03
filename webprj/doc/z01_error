@@ -1,0 +1,20 @@
+# 환경설정시 유의사항
+1. 표준환경설정
+	jdk : 1.5
+	tomcat : 9.0
+2. 설치 시 경로에 한글명이 들어가지않도록 주의
+	C:a01_javaexp
+		eclipse
+		workspace
+		tomcat
+
+
+
+2. port 충돌에러
+Several ports(7005,7080) required by Tomcat v9.0 Server at localhost are already in use
+The server may already be running in another process,
+or a system process may be using the port. To start this server you will need to stop the other process or change
+==> cmd
+netstat -ano|findstr 7080
+1520
+taskkill /f /pid 1520

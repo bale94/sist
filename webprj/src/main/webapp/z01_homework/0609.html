@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>
+<!-- 
+[1단계:개념] 1. 테이블의 padding 옵션은 어떤 역할을 하는지와 4가지 방향으로 설정하는 옵션을 기술하세요.
+- 셀의 가장자리와 셀 내용사이의 공간의 크기를 지정하는 역할이다. padding-top, padding-bottom, padding-right,
+padding-left로 4방향을 정할수있다.
+
+[1단계:개념] 2. rowspan과 colspan의 차이를  3X3 테이블의 예제를 통해 기술하세요
+rowspan은 row범위로 합치는 방법이고, colspan은 column범위로 합치는 방법이다.
+<table style="width:100%">
+  <tr>
+    <th colspan="2">이름</th>
+    <th>나이</th>
+  </tr>
+  <tr>
+    <td>짱구</td>
+    <td>신</td>
+    <td rowspan="2">10</td>
+  </tr>
+  <tr>
+    <td>철수</td>
+    <td>김</td>
+  </tr>
+</table>
+
+[1단계:개념] 3. 테이블에서 반복적인 행이나 열단위 배경색상이나 글자 색상을 처리할 때, 옵션을 예제를 통해서 기술하세요.
+style에 class를 만들어서 행이나 열단위 내용에 class처리해주면된다.
+<style>
+.color {
+  background-color: blue;
+  color: white;
+  border: 2px solid black;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="color">
+<h2>Jackson</h2>
+<p>Michael Jackson</p>
+</div> 
+
+<div class="color">
+<h2>Washington</h2>
+<p>George Washington</p>
+</div>
+
+<div class="color">
+<h2>Kadasian</h2>
+<p>Kim Kadasian</p>
+</div>
+
+</body>
+
+[1단계:개념] 4. 테이블의 td의 방향별로 border의 색상을 다르게 할 때, 처리하는 옵션을 기술하세요.
+nth-child(even) 으로 처리해주면된다.
+
+[1단계:개념] 5. 테이블의 행단위로 배경색상이 커서를 위치시켰을 때, 변경되는 옵션을 기술하세요.
+tr:hover 로 처리하면 커서를 위치시킬때 색상이 변경되도록 할 수 있다
+
+[1단계:개념] 6. 목록을 나타낼 때, 사용하는 ul/ol의 차이와 속성들을 기본 예제를 통하여 기술하세요.
+ul은 정렬되지않은 리스트로, 각 항목을 단순히 나열하지만 ol은 정렬된 리스트로 머리에 숫자를 붙혀
+순서대로 나열시킨다. 
+<ul>
+  <li>Jam</li>
+  <dd>- Strawberry</dd>
+  <li>Milk</li>
+  <dd>- Chocolate</dd>
+</ul>
+<ol>
+  <li>Jam</li>
+  <dd>- Strawberry</dd>
+  <li>Milk</li>
+  <dd>- Chocolate</dd>
+</ol>
+
+</body>
+
+[1단계:개념] 7. 요소들 가운데 block/inlne 속성이 있는 요소들이 있다. 특징을 기본 예제를 통해서 기술하세요.
+<p style="border: 2px dotted black">Hello World</p> - 내용을 블록으로감싼다(block)
+<p>오늘은 <span style="border: 1px solid black">설렁탕</span> 이 먹고싶다</p> - '설렁탕'만 내용도중에 블록으로 감싸진처리가 된다.(inline)
+
+[1단계:확인] 8. 클래스, 태그, id로 특정 요소에 글자크기를 변경한 css 선언을 하여, 출력되게 처리하세요. 
+<style>
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+
+}
+p  {
+  color: red;
+  font-family: courier;
+  font-size: 160%;
+}
+.ooo1{
+	background-color: yellow;
+    color: black;
+    border: 2px solid black;
+    margin: 20px;
+    padding: 20px;
+}
+#ooo2{
+	background-color: lightblue;
+    color: black;
+    padding: 40px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1>daddy</h1>
+<p>Family</p>
+<h2 class="ooo1">mama</h2>
+<h2 id="ooo2">mama</h2>
+
+</body>
+
+[1단계:개념] 9. iframe의 기본 속성을 예제를 통해서 설명하세요. 
+페이지 안에 크기를 지정하거나 하여서 다른 페이지를 출력시킬 수 있다.
+<h2>HTML Iframes</h2>
+<p>You can also use the CSS height and width properties to specify the size of the iframe:</p>
+
+<iframe src="demo_iframe.htm" style="height:100px;width:300px" title="Iframe Example"></iframe>
+
+</body>
+</html>
+
+[1단계:확인] 10. 웹화면상 물건가격, 물건명, 물건갯수를 입력하는 폼화면을 구현하세요.
+// 주의: 화면구성은 html/jsp로 할 수 있지만, 전송되어 받는 처리는 반드시 jsp로 처리해야한다.
+
+<form action="/0609_rev.jsp">
+  <label for="cprice">물건가격:</label><br>
+  <input type="number" name="pprice"><br>
+  <label for="cname">물건명:</label><br>
+  <input type="text" name="pname"><br>
+  <label for="ccnt">물건갯수:</label><br>
+  <input type="number" name="pcnt"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+// form 하위에 있는 요소객체 input에 입력된 데이터를
+	action=""으로 지정한 페이지로 name="키명" value="전송데이터"
+	키명=전송데이터 형식으로 submit를 클릭 시 서버에 전송한다.
+
+[1단계:개념] 11. checkbox와 radio의 차이점을 기본 예제를 통하여 기술하세요. 
+checkbox는 다중항을 고를 수 있지만 radio는 단일항밖에 고를 수 없다.
+<form action="/action_page.php">
+  <p>다룰수있는 언어:</p>
+  <input type="checkbox" id="html" name="language" value="HTML">
+  <label for="html">HTML</label><br>
+  <input type="checkbox" id="css" name="language" value="CSS">
+  <label for="css">CSS</label><br>
+  <input type="checkbox" id="javascript" name="language" value="JavaScript">
+  <label for="javascript">JavaScript</label>
+
+  <br>  
+
+  <p>당신의 나이:</p>
+  <input type="radio" id="age1" name="age" value="30">
+  <label for="age1">0 - 30</label><br>
+  <input type="radio" id="age2" name="age" value="60">
+  <label for="age2">31 - 60</label><br>  
+  <input type="radio" id="age3" name="age" value="100">
+  <label for="age3">61 - 100</label><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+-->

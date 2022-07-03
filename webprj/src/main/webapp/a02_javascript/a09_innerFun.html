@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+/*
+# 숫자형 check : isNaN()
+1. 문자열데이터를 입력해서 숫자형으로 변경할 때 숫자형이 아닌경우
+	에러나 NaN처리가 되기에 숫자형 여부를 check할때 사용된다
+ 
+*/
+	console.log(isNaN('하나'))
+	console.log(isNaN('25'))
+	console.log(isNaN('25.5'))
+	console.log(isNaN('넷'))
+	// "" : javascript에서는 0으로 형변환 가능
+	console.log(isNaN(""))
+	console.log("ck:' '"+isNaN("") + ":" + Number(""))
+	console.log("ck:''"+isNaN("") + ":" + Number(""))
+	console.log("ck:null"+isNaN(null) + ":" + Number(null))
+	// ps) "","		", null은 형변환함수에 ~(내용체크)
+	
+</script>
+<body>
+
+</body>
+</html>

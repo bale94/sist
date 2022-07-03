@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	// /a05_receiveParam.jsp?name=홍길동&age=25
+	// ?name=홍길동   <- 이부분을 붙히면 값이 이게되어나온다
+	// 요청값을 받은 소스?요청key=요청값
+	// 요청값을 받는 페이지
+	String name = request.getParameter("name");
+	String age = request.getParameter("age");
+	// 요청key가 없을때는 null
+	// 요청값이 있을 때는 key에대한 값을 출력
+	// 요청값은 일단 문자열로 받는다
+	// ex) a06_rev.jsp 요청key product, 요청값 사과
+	// ex) a06_rev.jsp 요청key price, 요청값 3000
+	//	요청키와 요청값에 의해서 데이터를 a06_rev.jsp에 전송하고 화면에는
+	//	물건명 @@@, 가격 @@@ 출력되게하세요
+
+%>
+	<h2>첫 요청값:<%=name%></h2>
+	<h2>두번째 요청값:<%=age%></h2>
+
+</body>
+</html>

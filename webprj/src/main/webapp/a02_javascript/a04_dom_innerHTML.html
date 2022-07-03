@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var sum=0;
+function tot(sum){
+	 // 매개변수로 받은 지역변수를 전역변수에 할당 처리
+	 this.sum+=sum;
+	 console.log(this.sum+":"+sum)// 브라우저의 console에 출력처리
+	 document.querySelector("h5").innerText = "총계: "+this.sum
+}
+</script>
+</head>
+<body>
+	<h4 onclick="tot(1)">연산</h4>
+	<h5></h5>
+	<h2 onclick="chText()">클릭</h2>
+	<div>여기에 추가 내용 처리</div>
+</body>
+<script type="text/javascript">
+	function chText(){
+		var divObj = document.querySelector("div")
+		divObj.innerHTML += "<h3>I LOVE YOU</h3>"
+	}
+	// f12활용 - 에러찾기
+</script>
+</html>

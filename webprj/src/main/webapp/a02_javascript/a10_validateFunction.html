@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/**
+# 서버로 전송하기 전에 유효성검사
+1. 서버로 전송되는 데이터를 사전에 프런트단에서 유효성을 check하여
+	처리하는 것을 말한다
+2. 유효성 처리 내용
+	1) 공백여부 확인
+	2) password/password확인
+		패스워드: [	 ]
+		패스워드확인: [		]
+		두 내용이 동일할때만 입력이 가능하게 처리
+	3) 글자수에 대한 제한 : 
+		ex)	id는 4~8, 8~12
+		ps) id인 경우에 ajax로 서버에 회원 등록여부를 처리해서 없는경우에만
+			입력가능하도록 한다
+	4) 보안강화 : 영어 대소문자, 숫자, 특수문자, ..
+		이메일이나 전화번호는 형식에 맞게 입력
+		==> 정규식처리(regulation expression) [a]w*]..
+
+ */
+ 	function sendData(){
+		var id = document.querySelector("[name=id]");
+		if(id.value==""){	//공백인경우
+			alert("아이디를 입력하세요")
+			id.focus();	//해당위치에 요소객체 focusing
+			return	//전송을 중단처리한다
+		}else{
+			// 공백이 아닌경우에 글자수제한처리
+			// .length함수 사용 (주의!)==> java에서는 일반배열은 배열.length가크기를 나타내고 문자열.length() 구분한다
+			//							js : 문자열이나 배열이나 동일하게 .length활용
+			//alert(id.value.length)//id.value => id로 입력한 값, id=>해당객체
+			//if(!(name.length>=8 && name.length<=16)){
+			if(id.value.length<8 || id.value.length>16){
+				alert("아이디는 8~16자 사이로 입력가능합니다")
+				id.focus()
+				id.value=""
+				return	//더이상 프로세스가 진행되지않게함. (submit되지않게 처리)
+			}
+		}
+		//1. 패스워드값이 데이터가 있도록 처리
+		var pass = document.querySelector("[name=pass]")
+		var passVal = document.querySelector("[name=passVal]")
+		// ps) 주의! .equals는 java에서만 쓰이고 js에서는 그냥 == 로 비교해도된다
+		if(pass.value==""){
+			alert("패스워드를 입력하세요")
+			pass.focus()
+			return
+		}
+		if(pass.value!=passVal.value){
+			alert("패스워드가 같지않습니다\n다시입력해주세요")
+			pass.value=""
+			passVal.value=""
+			pass.focus()
+			return
+		}
+		var cname = document.querySelector("[name=cname]")
+		if(cname.value==""){
+			alert("이름을 입력해주세요")
+			cname.focus()
+			return
+		}else{
+			if(cname.value.length<2 || cname.value.length>8){
+				alert("이름은 2~8자 사이로 입력가능합니다\n 다시 입력해주세요")
+				cname.focus()
+				cname.value=""
+				return
+			}
+		}
+		document.querySelector("form").submit();			
+	}
+</script>
+</head>
+<body>
+	<h2>회원가입</h2>
+	<form action="a11_memberReg.jsp">
+		아이디:<input type="text" name="id"/><br>
+		<!-- 
+		패스워드/패스워드확인 넣고
+		1. 입력에대한 유효성check
+		2. 패스워드와 패스워드확인이 동일한지 여부를 check하여
+			동일하지않으면 전송중단, 동일하지않다고 표기
+		-->
+		비밀번호:<input type="password" name="pass"/><br>
+		비밀번호확인:<input type="password" name="passVal"/><br>
+		<!-- 
+		ex) 이름:[	]
+		1. 이름은 반드시 입력
+		2. 이름은 2~8자 사이 입력가능하게 처리
+		-->
+		이름:<input type="text" name="cname"/><br>
+		<input type="button" value="회원등록" onclick="sendData()"/>
+		
+	</form>
+</body>
+</html>
