@@ -35,10 +35,32 @@
       	<constructor-arg value="010-7888-9999"/>
       	<constructor-arg value="삼성전자"/>
       </bean>
+      <!-- 
+      HandPhone hp = new HandPhone("010-7888-9999","삼성전자");
+      -->
       <bean id="hperson01" class="a01_diexp.z01_vo.HPerson">
       	<property name="name" value="홍길동"/>
-      	<property name="handphone" ref="hp"/> <!-- 객체일때는 위에 선언한 id값을 할당한다 -->
+      	<property name="handphone" ref="hp"/> <!-- 객체일때는 위에 선언한 id값을 할당한다 / 객체를할당할떄는 ref를 쓴다 -->
       </bean>
+      <!-- 
+      HPerson hperson01 = new HPerson();
+      hperson01.setName("홍길동");
+      hperson01.setHandphone( hp );
+      // 주의: hp와 같이 객체의 참조변수를 할당할 때는 value가 아니라, 참조변수(reference)의 약자인 ref를 속성으로하여 ref="참조변수"
+      			형식으로 할당하여야 한다.
+       -->
+      
+      
+      <!-- 
+      # 컨테이너 안에서 객체와 객체를 사용하기
+      1. class 구성
+      	1) 소속될 클래스 선언
+      	2) 포함할 클래스 선언
+      		소속된 클래스를 필드로 하여 set/get 메소드 선언
+      2. 클래스를 container에서 객체로 생성
+      3. 연관 관계 설정한 property 선언하고, 생성된 객체의 참조값을 할당
+      	<property name="handphone" ref="hp" /> 
+      -->
       
       
 </beans>

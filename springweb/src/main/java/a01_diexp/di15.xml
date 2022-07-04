@@ -31,21 +31,18 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       " >
-      <bean id="p01" class="a01_diexp.z01_vo.Person">
-      	<property name="name" value="홍길동"/>
-      	<property name="age" value="25"/>
-      	<property name="loc" value="인천"/>
+      <bean id="car01" class="a01_diexp.z01_vo.Car">
+      	<constructor-arg value="포르쉐911"/>
+      	<constructor-arg value="150"/>
       </bean>
-      <bean id="person" class="a01_diexp.z01_vo.Person">
-      	<property name="name" value="마길동"/>
-      	<property name="age" value="27"/>
-      	<property name="loc" value="수원"/>
+      <bean id="carracer01" class="a01_diexp.z01_vo.CarRacer">
+      	<property name="name" value="홍길동"/>
+      	<property name="car" ref="car01"/>
       </bean>
       <!-- 
-      Person p01 = new Person();
-      p01.setName("홍길동");
-      p01.setAge(25);
-      p01.setLoc("인천");
+      Car car = new Car("포르수ㅐ911");
+      CarRacer cr = new CarRacer("홍길동")
+      cr.setCar(car);
       -->
       
 </beans>

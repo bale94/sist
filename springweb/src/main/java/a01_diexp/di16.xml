@@ -31,21 +31,13 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       " >
-      <bean id="p01" class="a01_diexp.z01_vo.Person">
-      	<property name="name" value="홍길동"/>
-      	<property name="age" value="25"/>
-      	<property name="loc" value="인천"/>
+      <bean id="cpu" class="a01_diexp.z01_vo.Cpu">
+      	<constructor-arg value="i5-12400F"/>
+      	<constructor-arg value="Intel"/>
       </bean>
-      <bean id="person" class="a01_diexp.z01_vo.Person">
-      	<property name="name" value="마길동"/>
-      	<property name="age" value="27"/>
-      	<property name="loc" value="수원"/>
+      <bean id="computer" class="a01_diexp.z01_vo.Computer">
+      	<constructor-arg value="데스크탑"/>
+      	<property name="cpu" ref="cpu"/>
       </bean>
-      <!-- 
-      Person p01 = new Person();
-      p01.setName("홍길동");
-      p01.setAge(25);
-      p01.setLoc("인천");
-      -->
       
 </beans>

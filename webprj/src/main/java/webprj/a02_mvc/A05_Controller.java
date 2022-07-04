@@ -31,7 +31,10 @@ public class A05_Controller extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);
-		
+		/*
+		 redirect 형식: 모델 데이터 전송하지않음
+		 * */
+		response.sendRedirect(viewPage);
 	}
 
 }

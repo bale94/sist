@@ -33,6 +33,11 @@
 			
 			return "view단 경로 및 파일 설정";
 		}
+	3) 요청값 처리
+	4) 리턴형식으로 view단 호출	default로 forward형식이기에 model데이터를 함께 전송이 가능하다.
+		- forward: request, response
+		- redirect: 페이지를 호출할 때 모델값 전달 못함(session값은 전달)
+			
 
 4. 스프링 컨테이너 이해를 위한 DI(제어역전)/AOP
 
