@@ -16,7 +16,7 @@ public class CarRacer {
 		if(car!=null) {
 			System.out.println("자동차 정보");
 			System.out.println("자동차명: "+car.getName());
-			System.out.println("시속: "+car.getMaxSpeed()+"km");
+			System.out.println("최고속도: "+car.getMaxSpeed()+"km/h");
 		}else {
 			System.out.println("자동차 없음");
 		}
