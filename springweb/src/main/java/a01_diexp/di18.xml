@@ -31,7 +31,7 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd   
       " >
-      <bean id="hp" class="a01_diexp.z01_vo.HandPhone">
+      <bean id="handphone" class="a01_diexp.z01_vo.HandPhone">
       	<constructor-arg value="010-7777-8888"/>
       	<constructor-arg value="LG전자"/>
       </bean>
@@ -47,21 +47,14 @@
       	해당하는 객체로 할당이 가능한 것이다.
       	ref를 쓰지않아도 알아서 할당된다.
       -->
-      <bean id="hperson" class="a01_diexp.z01_vo.HPerson" autowire="byType">
+      <bean id="hperson" class="a01_diexp.z01_vo.HPerson" autowire="byName">
       	<constructor-arg value="마길동"/>
       </bean>
       <!-- 
-      # autowire = "byName": 할당할 수 있는 객체가 여러개있을 때 해당 객체를 할당하는 기준이 되는 것이
-      	기능메소드의 byName으로 선언됨으로서 여러개 객체들 중에 id값이 set property와 동일한 것이
-      	할당된다.
+      # autowire = "byName": 할당할 수 있는 객체가 여러개있을 때(type은 동일을 전제) 해당 객체를 할당하는 기준이 되는 것이
+      	기능메소드의 byName으로 선언됨으로서 여러개 객체들 중에 id값이 set property와 동일한 것이 할당된다.
+      	ex) setHandphone ==> property명: Handphone ==> handphone
+      	bean id="handphone" id명과 property동일한 객체만 할당처리된다.
       -->
-      <bean id="car" class="a01_diexp.z01_vo.Car">
-      	<constructor-arg value="람보르기니"/>
-      	<constructor-arg value="250"/>
-      </bean>
-      <bean id="carracer" class="a01_diexp.z01_vo.CarRacer" autowire="byType">
-      	<constructor-arg value="김길동"/>
-      </bean>
-      <!--  public void setCar(Car car) {  -->
       
 </beans>

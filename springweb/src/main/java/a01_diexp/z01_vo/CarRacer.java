@@ -10,7 +10,6 @@ public class CarRacer {
 	public CarRacer(String name) {
 		this.name = name;
 	}
-	
 	public void driving() {
 		System.out.println(name+"이(가) 자동차를 운행하다");
 		if(car!=null) {
@@ -22,6 +21,7 @@ public class CarRacer {
 		}
 	}
 	
+	
 	public String getName() {
 		return name;
 	}
@@ -31,9 +31,8 @@ public class CarRacer {
 	public Car getCar() {
 		return car;
 	}
-	public void setCar(Car car) {
+	public void setCar02(Car car) {
 		this.car = car;
 	}
-	
 	
 }
