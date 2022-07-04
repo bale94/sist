@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springweb.z01_vo.Member;
 import springweb.z01_vo.Product;
 // springweb.a01_start.A01_StartController
-@Controller
+// a01_StartController         /url, 클래스명은 전부 다르게 설정해야 한다.
+@Controller("controller01")// --> id값을 설정하여 사용
 public class A01_StartController {
 	// http://localhost:7080/springweb/start.do
 	@RequestMapping("/start.do")
