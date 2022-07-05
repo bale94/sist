@@ -30,6 +30,7 @@ public class HPerson {
 	public HandPhone getHandphone() {
 		return handphone;
 	}
+	// set property: handphone,		<bean id="handphone"
 	public void setHandphone(HandPhone handphone) {
 		this.handphone = handphone;
 	}

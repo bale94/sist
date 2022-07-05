@@ -12,9 +12,11 @@ public class Person {
 		this.age = age;
 		this.loc = loc;
 	}
+	// get property: getName() ==> Name ==> name ex) el태그 ${@@.name}
 	public String getName() {
 		return name;
 	}
+	// set property: setName(데이터유형) ==> Name ==> name
 	public void setName(String name) {
 		this.name = name;
 	}

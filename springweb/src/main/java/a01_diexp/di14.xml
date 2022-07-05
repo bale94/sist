@@ -40,6 +40,7 @@
       -->
       <bean id="hperson01" class="a01_diexp.z01_vo.HPerson">
       	<property name="name" value="홍길동"/>
+      	<!-- public void setHandphone(HandPhone handphone) -->
       	<property name="handphone" ref="hp"/> <!-- 객체일때는 위에 선언한 id값을 할당한다 / 객체를할당할떄는 ref를 쓴다 -->
       </bean>
       <!-- 

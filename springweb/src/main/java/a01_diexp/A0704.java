@@ -27,7 +27,11 @@ public class A0704 {
 		할당이 된다.
 		
 		[1단계:확인] 5. 마트와 마트에서 구매한 객체 Product 3개를 선언하고, 이 중 하나의 객체를 byName으로 설정해서 할당하게 처리
-		
+			1) Product클래스: 물건명, 가격, 갯수 생성자: 필드값 초기화
+			2) Mart 클래스: 마트명, Product생성자: 마트명 초기화
+				public void setProduct01(Product product)
+				autowire="byName"으로 되어있을때 생성된 id값 product01일때 할당처리되는
+				set property선언
 		 * */
 		Note note = ctx.getBean("note", Note.class);// ""안에 들어가는값은 xml에 설정된 id값
 		Park park = ctx.getBean("park",Park.class);
@@ -35,7 +39,7 @@ public class A0704 {
 		System.out.println(note);
 		note.writing();
 		park.visiting();
-		mart.buying();
+		mart.showBuyProduct();
 		ctx.close();
 		/*
 		<bean id="pen" class="a01_diexp.z01_vo.Pen">

@@ -9,7 +9,7 @@ public class Mart {
 	public Mart(String name) {
 		this.name = name;
 	}
-	public void buying() {
+	public void showBuyProduct() {
 		if(product!=null) {
 			System.out.println(name+"마트에서 "+product.getName()+"을 사고 "+product.getPrice()+"원을 지불했다");
 		}else {
@@ -26,7 +26,9 @@ public class Mart {
 	public Product getProduct() {
 		return product;
 	}
-	public void setProduct(Product product) {
+	// <bean id="product01" autowire="byName"
+	// 할당할 수 있게 property선언
+	public void setProduct01(Product product) {
 		this.product = product;
 	}
 	
