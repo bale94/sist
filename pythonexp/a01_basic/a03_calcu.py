@@ -26,11 +26,12 @@ print('남은빵의 갯수:', bread%bear)
     ==, !=, >, <, <=, >=
 # 논리연산자
 1. 비교연산자가 여러번 필요할 때 사용
-2. and, or, not
+2. and, or, not(비교 또는 논리연산)
     ex) 나이가 10이상 18미만 청소년 요금제 적용
 '''
 age = 15
 isPayCal = age>=10 and age<18
+isNotPayCal = not(age>=10 and age<18)
 print("나이: ",age)
 print("청소년 요금제 적용여부:", isPayCal)
 

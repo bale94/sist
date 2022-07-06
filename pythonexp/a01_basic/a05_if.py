@@ -18,6 +18,8 @@ print("프로그램 시작")
 age=27
 if age>=18: # 해당조건식일때만 출력
     print("성인입니다")
+    print("성인입니다")
+    print("성인입니다")
 print("프로그램 종료")
 print("# 분기 조건 #")
 point= 80
