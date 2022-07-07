@@ -1,7 +1,7 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-1816cc8a7c3-35ec39e12bffd243": {
+		"oracle_thin-1816cd04534-7c282c2d72d46fd1": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
 			"name": "ORCL",
@@ -10,8 +10,8 @@
 			"configuration": {
 				"host": "localhost",
 				"port": "1521",
-				"database": "ORCL",
-				"url": "jdbc:oracle:thin:@//localhost:1521/ORCL",
+				"database": "XE",
+				"url": "jdbc:oracle:thin:@localhost:1521:XE",
 				"home": "C:\\oraclexe\\app\\oracle\\product\\11.2.0\\server",
 				"type": "dev",
 				"provider-properties": {
@@ -26,7 +26,7 @@
 					"@dbeaver-meta-use-alternative-table-query@": "false",
 					"oracle.meta-search-in-synonyms": "false",
 					"@dbeaver-connection-type@": "BASIC",
-					"@dbeaver-sid-service@": "SERVICE"
+					"@dbeaver-sid-service@": "SID"
 				},
 				"auth-model": "oracle_native",
 				"handlers": {}

@@ -1,0 +1,22 @@
+# 개발 환경 설정
+1. 설정 내용
+	1) 고정 ip
+		server 컴퓨터를 지정하여 고정ip 실행을 처리
+		db서버 확인
+	2) DB서버 설정
+		- 방화벽 처리
+	3) svn 서버(git 대체 가능)
+		
+	4) web 서버 설정
+	
+# svn
+1. commit: client ==> server
+2. update: server ==> client
+3. 주의사항
+	1) commit을 하려면 현재 파일과 폴더정보가 서버와 동일할때
+	2) 비교를 통한 commit 상세기능 확인
+	3) 소스는 각자 폴더를 만들어서 진행
+	4) 공통 소스폴더는 해당 담당자가 관리할수 있도록 한다
+	5) 충돌이 날 때, 소스가 locked 되는 경우가 생기면 team ==> refresh/cleanup
+	6) replace with: 최신의 서버 파일로 대체
+	7) 정 안되면 delete -> delete project contents on disk 체크 후 삭제 / 다시 import
