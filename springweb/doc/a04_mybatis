@@ -1,0 +1,16 @@
+# mybatis
+1. 스프링에서 database base 연동하는 xml기반 framework
+2. 기본 환경 구성
+	1) 컨테이너 설정
+		- 데이터베이스 연결 객체 선언
+		- 공통 mybatis 설정 파일 선언
+		- dao 인터페이스 폴더 선언
+	2) 공통 mybatis 설정파일
+		- mapper 설정 파일 선언
+		- vo 등록
+3. 개발 순서
+	1) sql 작성
+	2) vo 작성
+	3) interface 선언
+	4) 공통mybatis xml에 vo 할당
+	5) mapper.xml 선언
