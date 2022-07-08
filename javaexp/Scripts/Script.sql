@@ -61,6 +61,26 @@ INSERT INTO emp01 values(?, ?, ?, ?,
 
 
  * */
+SELECT *
+FROM Salgrade
+WHERE grade=4;
+--
+--
+SELECT ename
+FROM emp;
+
+SELECT empno
+FROM EMP e
+WHERE deptno=10;
+
+SELECT sal
+FROM emp
+WHERE job='SALESMAN';
+
+SELECT *
+FROM emp;
+
+
 
 
 

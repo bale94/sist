@@ -72,7 +72,7 @@ public class A01_StartController {
 	// http://localhost:7080/springweb/empList.do
 	// http://localhost:7080/springweb/empList.do?ename=홍길동&job=사원
 	/*@RequestMapping("/empList.do")
-	public String empList(Emp sch, Model d) {
+	public String empList01(Emp sch, Model d) {
 		System.out.println("사원명:"+sch.getEname());
 		System.out.println("직책명:"+sch.getJob());
 		d.addAttribute("emplist",new A04_PreDAO().getEmpList2(sch));

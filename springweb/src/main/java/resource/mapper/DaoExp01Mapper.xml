@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="springweb.a02_mvc.a03_dao.DaoExp01">
+	<select id="getEmpCount" resultType="int">
+		select count(*)
+		from emp
+	</select>
+	<select id="getEmpSal" resultType="double">
+		select sal
+		from emp
+		where empno=7369
+	</select>
+	<select id="getSalSum" resultType="double">
+		select sum(sal)
+		from emp
+		where deptno=10
+	</select>
+	<select id="getEmpJob" resultType="string">
+		select job
+		from emp
+		where empno=7499
+	</select>
+	<!-- 
+	public boolean hasEmp()
+	 -->
+	<select id="hasEmp" resultType="boolean">
+		select count(*)
+		from emp
+		where empno=7369
+	</select>
+	<!-- 
+	public DeptEmp01 getDeptEmp()
+	Alias 이름이 리턴형식
+	// deptemp01와 mapping 되어있는 vo클래스에
+	class DeptEmp01{
+	
+		public void setDname(String dname);
+		public void setEname(String ename);
+		public void setSal(double sal);
+		public void setLoc(String loc);
+	 -->
+	<select id="getDeptEmp" resultType="deptemp01">
+		select dname, ename, sal, loc
+		from emp e, dept d
+		where e.deptno = d.deptno
+		and empno=7369
+	</select>
+	
+	<select id="getSalgrade" resultType="salgrade">
+		SELECT *
+		FROM Salgrade
+		WHERE grade=4
+	</select>
+	<!-- 
+		public List<String> getEnames();
+		public List<Integer> getEmpnos();
+		public Double[] getSalaries();
+		
+		SELECT ename
+		FROM emp;
+			
+		SELECT empno
+		FROM EMP e
+		WHERE deptno=10;
+			
+		SELECT sal
+		FROM emp
+		WHERE job='SALESMAN';
+	 -->
+	 <select id="getEnames" resultType="string">
+	 	SELECT ename
+		FROM emp
+	 </select>
+	 <select id="getEmpnos" resultType="int">
+	 	SELECT empno
+		FROM EMP
+		WHERE deptno=10
+	 </select>
+	 <select id="getSalaries" resultType="double">
+	 	SELECT sal
+		FROM emp
+		WHERE job='SALESMAN'
+	 </select>
+	 
+	 <select id="getJobs" resultType="string">
+	 	select job
+		from emp
+		where deptno=10
+	 </select>
+	 
+	 <select id="getEmpList30" resultType="emp">
+	 	select *
+		from emp e
+		where deptno=30
+	 </select>
+	 
+</mapper>
+
+<!-- 
+	resultType의 가능한 변수 유형:
+		int, double, string,
+		boolean(DB -> 0, 1)
+ -->

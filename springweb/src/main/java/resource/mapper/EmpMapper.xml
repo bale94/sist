@@ -5,14 +5,31 @@
 <mapper namespace="springweb.a02_mvc.a03_dao.EmpDao">
 	<select id="getEmpList" resultType="emp" 
 							parameterType="emp">
-		select * from emp
+		select *
+		from emp
 	</select>
 </mapper>
 <!-- 
 mapper -> empdao가 어디있는지
 id -> 함수명
 parameterType -> 단위객체를 설정 ex) Emp
+
+// springweb.a02_mvc.a03_dao.EmpDao (인터페이스)
+1. 인터페이스명과 namespace의 명을 동일하게.. XXXMapper.xml ==> XXXDao
 public interface EmpDao {
-	public List<Emp> getEmpList(Emp sch);
+	public List<Emp> getEmpList(Emp sch);	(추상메소드)
+	// 3. 리턴할 데이터 유형 List<Emp> == resultType
+	// 4. 매개변수의 데이터유형 (Emp sch) == parameterType
+	
+2. 기능메소드와 sql을 가지고있는 mapper의 id명과 연결
+	public void insertEmp(Emp ins);
 }
+인터페이스의 구성요소를 실제 객체를 만들기위해 연결 규칙을 선언해주면 실제 객체를 만들어준다
+EmpDao dao = new RealEmpDaoObj();
+
+
+class RealEmpDaoObj implements EmpDao{
+	
+}
+
  -->
