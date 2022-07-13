@@ -95,4 +95,77 @@ FROM emp;
 SELECT ename 사원명, sal/12 || '원' 월급여
 -- select '사원명 ' || ename || '의 월급여는 ' || round(sal/12) || '입니다' show
 FROM emp; -- round(): 반올림, ceil(): 올림, floor(): 내림 ==> 내장함수
+/*
+private String email;
+	private String pass;
+	private String name;
+	private String birth;
+	private int phone;
+	private String address;
+	private String auth
+ * */
+CREATE TABLE snmember(
+	email varchar2(50),
+	pass varchar2(50),
+	name varchar2(50),
+	birth varchar2(50),
+	phone NUMBER,
+	address varchar2(100),
+	auth varchar2(50)
+	
+);
+SELECT * FROM snmember;
+INSERT INTO snmember VALUES('admin@admin', '1234', 'admin', '1994-23-23', 1234, 'admin', 'admin');
+
+SELECT * FROM emp;
+SELECT * FROM emp01;
+
+--
+SELECT *
+FROM emp01;
+-- public List<Emp> getEmpJob(String job);
+SELECT *
+FROM EMP01 e 
+WHERE job = '관리자';
+-- public void deleteHiredate(int Q);
+DELETE
+FROM EMP01 e 
+WHERE to_char(hiredate, 'Q') = '2';
+SELECT *
+FROM EMP01 e2 
+WHERE to_char(hiredate, 'Q') = '2';
+-- public Emp getMaxSal(int deptno);
+SELECT deptno, max(sal)
+FROM EMP01 e 
+WHERE deptno=20
+GROUP BY deptno;
+
+SELECT * FROM EMP01 e 
+WHERE ename = 'WARD'
+AND job = 'SALESMAN'
+AND sal = 1250;
+-- new Emp("WARD", "SALESMAN", 1250)
+DELETE FROM EMP01 e 
+WHERE empno=9000;
+SELECT * FROM emp01;
+
+SELECT * FROM dept01;
+
+SELECT * FROM dept;
+
+--2) 급여의 범위(시작/마지막)을 지정하여 사원 정보를 가져오기
+SELECT *
+FROM EMP e 
+WHERE sal BETWEEN 1000 AND 2000;
+
+SELECT * FROM emp;
+
+select deptno, max(sal) sal from emp GROUP BY deptno;
+
+SELECT * FROM emp01;
+SELECT round(avg(sal)) asal
+		FROM EMP01 e 
+		WHERE job = 'SALESMAN';
+
+
 

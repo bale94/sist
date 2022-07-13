@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="event" type="starryNight.vo.Event"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="starryNight/resource/EventMapper.xml"/>
+		<mapper resource="starryNight/resource/ProductMapper.xml"/>
+	</mappers>
+</configuration>

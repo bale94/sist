@@ -6,6 +6,7 @@ CREATE TABLE WoriBANK(
 	PW NUMBER NOT null,
 	balance NUMBER
 );
+INSERT INTO WORIBANK values(memNum01.nextval, '홍길동', '1231123123', 1234, 1234);
 CREATE SEQUENCE memNum01
 	INCREMENT BY 1
 	START WITH 100001
@@ -63,7 +64,8 @@ SELECT * FROM dept01;
 			point number,
 			auth varchar2(50)
 			);
-	INSERT INTO member21 values('seq.nextVal', '8888', '마길동', 2000, '일반사용자');
+	INSERT INTO member21 values(seq.nextVal, '8888', '마길동', 2000, '일반사용자');
+SELECT * FROM member21;
 	
 
 select *

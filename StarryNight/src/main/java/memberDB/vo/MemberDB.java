@@ -62,6 +62,11 @@ public class MemberDB {
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
+	@Override
+	public String toString() {
+		return "MemberDB [email=" + email + ", pass=" + pass + ", name=" + name + ", birth=" + birth + ", phone="
+				+ phone + ", address=" + address + ", auth=" + auth + "]";
+	}
 	
 	
 }

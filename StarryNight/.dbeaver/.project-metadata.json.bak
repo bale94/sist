@@ -1,1 +1,4 @@
-{"resources":{"Scripts/Script.sql":{"sql-editor-data-source-id":"oracle_thin-181d26a6101-6a05517c9988076b","default-datasource":"oracle_thin-181d26a6101-6a05517c9988076b"}}}
+<<<<<<< .mine
+{"resources":{"DB/script/script.sql":{"sql-editor-data-source-id":"oracle_thin-181d2a2a820-54938e89b6937319"},"Scripts/Script.sql":{"sql-editor-data-source-id":"oracle_thin-181d270bf01-16ede99e015ec405","default-datasource":"oracle_thin-181d26a6101-6a05517c9988076b"}}}||||||| .r32
+{"resources":{"Scripts/Script.sql":{"sql-editor-data-source-id":"oracle_thin-181d26a6101-6a05517c9988076b","default-datasource":"oracle_thin-181d26a6101-6a05517c9988076b"}}}=======
+{"resources":{"DB/script/CreateTables.sql":{"sql-editor-data-source-id":"oracle_thin-180cbb7c035-15d0c99b2b195c3a","default-datasource":"oracle_thin-180cbb7c035-15d0c99b2b195c3a","default-schema":"SCOTT"},"Scripts/Script.sql":{"sql-editor-data-source-id":"oracle_thin-181d270bf01-16ede99e015ec405","default-datasource":"oracle_thin-181d26a6101-6a05517c9988076b"}}}>>>>>>> .r33

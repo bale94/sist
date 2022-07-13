@@ -17,7 +17,7 @@
 		from emp
 		where deptno=10
 	</select>
-	<select id="getEmpJob" resultType="string">
+	<select id="getEmpJob01" resultType="string">
 		select job
 		from emp
 		where empno=7499
@@ -69,32 +69,112 @@
 		FROM emp
 		WHERE job='SALESMAN';
 	 -->
-	 <select id="getEnames" resultType="string">
-	 	SELECT ename
+	<select id="getEnames" resultType="string">
+		SELECT ename
 		FROM emp
-	 </select>
-	 <select id="getEmpnos" resultType="int">
-	 	SELECT empno
+	</select>
+	<select id="getEmpnos" resultType="int">
+		SELECT empno
 		FROM EMP
 		WHERE deptno=10
-	 </select>
-	 <select id="getSalaries" resultType="double">
-	 	SELECT sal
+	</select>
+	<select id="getSalaries" resultType="double">
+		SELECT sal
 		FROM emp
 		WHERE job='SALESMAN'
-	 </select>
+	</select>
 	 
-	 <select id="getJobs" resultType="string">
+	<select id="getJobs" resultType="string">
 	 	select job
 		from emp
 		where deptno=10
-	 </select>
+	</select>
 	 
-	 <select id="getEmpList30" resultType="emp">
-	 	select *
+	<select id="getEmpList30" resultType="emp">
+		select *
 		from emp e
 		where deptno=30
-	 </select>
+	</select>
+	 
+	<select id="getEmpList" resultType="empq">
+		SELECT empno, ename, to_char(hiredate, 'Q') div, hiredate
+		FROM EMP e
+		WHERE to_char(hiredate, 'Q') = '1'
+	</select>
+	 
+	<select id="getJobAvg" resultType="jobavg">
+		SELECT job, CEIL(avg(sal)) avgsal
+		FROM EMP e
+		GROUP BY job
+	</select>
+	<select id="getDetail" resultType="emp" parameterType="int">
+		select *
+		from emp
+		where empno = #{empno}
+	</select>
+	<delete id="deleteEmp" parameterType="string">
+		delete
+		from emp01
+		where job = #{job}
+	</delete>
+	<select id="getEmpJob" resultType="emp" parameterType="string">
+		SELECT *
+		FROM EMP01 e 
+		WHERE job = #{job}
+	</select>
+	<delete id="deleteHiredate" parameterType="string">
+		DELETE
+		FROM EMP01 e 
+		WHERE to_char(hiredate, 'Q') = #{Q}
+	</delete>
+	<select id="getDeptMaxSal" resultType="deptMsal" parameterType="int">
+		SELECT deptno, max(sal) msal
+		FROM EMP01 e 
+		WHERE deptno=#{deptno}
+		GROUP BY deptno
+	</select>
+	<select id="schEmpList02" resultType="emp" parameterType="emp">
+		select *
+		from emp01
+		where ename = #{ename}
+		and job = #{job}
+		and sal = #{sal}
+	</select>
+	<insert id="insertEmp02" parameterType="emp">
+		insert into emp01(empno, ename, job) values(#{empno}, #{ename}, #{job})
+	</insert>
+	<update id="updateEmp02" parameterType="emp">
+		update emp01
+			set ename = #{ename},
+				mgr = #{mgr},
+				sal = #{sal}
+		where empno = #{empno}
+	</update>
+	<insert id="insertDept" parameterType="dept">
+		insert into DEPT01 values(#{deptno}, #{dname}, #{loc})
+	</insert>
+	<select id="getEmpList2" resultType="emp" parameterType="hashMap">
+		select *
+		from emp
+		where 1=1
+		<if test="ename != null">	<!-- ename이 null일때 처리되도록 하기위해 -->
+		and ename like '%'||#{ename}||'%'
+		</if>
+		<if test="job!=null">	<!--  #job이 null일때 처리되도록 하기위해-->
+		and job like '%'||#{job}||'%'
+		</if>
+	</select>
+	<select id="getDeptList2" resultType="dept" parameterType="map">
+		select *
+		from dept
+		where 1=1
+		<if test="dname!=null">
+			and dname like '%'||#{dname}||'%'
+		</if>
+		<if test="loc!=null">
+			and loc like '%'||#{loc}||'%'
+		</if>
+	</select>
 	 
 </mapper>
 

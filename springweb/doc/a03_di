@@ -16,7 +16,8 @@
 		즉, IOC컨테이너 기능을 제공한다.
 		IOC컨테이너는 객체의 생성을 책임지고, 의존성을 관리(Controller ==> dao)한다
 		POJO(Plain Old Java Object)의 생성, 초기화, 서비스, 소멸에 대한 권한을 가진다.
-		개발자들이 직접 pojo를 생성할 수 있지만 컨테이너에게 맡긴다
+		개발자들이 직접 pojo를 생성할 수 있지만 컨테이너에게 맡긴다 
+		(pojo = plain old java object)
 		
 	3) IOC에서 파생하는 개념들
 		DL(Dependency Lookup) 저장소에 저장되어 있는 bean에 접근하기 위해 컨테이너가 제공하는

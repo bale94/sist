@@ -64,7 +64,7 @@
       	 추가 패키지 value="패키지1, 패키지2, ..."
        -->
       <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-      	<property name="basePackage" value="springweb.a02_mvc.a03_dao"/>
+      	<property name="basePackage" value="springweb\a02_mvc\a03_dao"/><!-- ,하고 본인dao폴더위치 추가하시면됩니다 -->
       </bean>
 	
 </beans>

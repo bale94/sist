@@ -26,6 +26,22 @@ public class Emp {
 	public Emp() {
 		
 	}
+	public Emp(String ename, String job, double sal){
+		this.ename = ename;
+		this.job = job;
+		this.sal = sal;
+	}
+	public Emp(int empno, String ename, String job){
+		this.empno = empno;
+		this.ename = ename;
+		this.job = job;
+	}
+	public Emp(String ename, int mgr, double sal, int empno){
+		this.ename = ename;
+		this.mgr = mgr;
+		this.sal = sal;
+		this.empno = empno;
+	}
 	
 	public Emp(String ename, String job) {
 		super();
