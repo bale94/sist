@@ -25,4 +25,26 @@
 								sysdate
 		)
 	</insert>
+	<select id="getBoardDetail" resultType="board" parameterType="int">
+		select *
+		from board
+		where no = #{no}
+	</select>
+	<update id="readCountup" parameterType="int">
+		update board
+			set readcnt = readcnt+1
+			where no = #{no}
+	</update>
+	<update id="updateBoard" parameterType="board">
+		update board
+			set subject = #{subject},
+				content = #{content},
+				uptdte = sysdate
+		where no = #{no}
+	</update>
+	<delete id="deleteBoard" parameterType="int">
+		delete
+		from board
+		where no = #{no}
+	</delete>
 </mapper>

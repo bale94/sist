@@ -9,5 +9,6 @@
 	<mappers>
 		<mapper resource="starryNight/resource/EventMapper.xml"/>
 		<mapper resource="starryNight/resource/ProductMapper.xml"/>
+		<mapper resource="starryNight/resource/ProductListMapper.xml"/>
 	</mappers>
 </configuration>

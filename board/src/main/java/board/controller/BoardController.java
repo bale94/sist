@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import board.service.BoardService;
 import board.vo.Board;
@@ -34,4 +35,24 @@ public class BoardController {
 	
 		return "WEB-INF\\views\\a02_boardInsert.jsp";
 	}
+	@RequestMapping("boardDetail.do")
+	public String boardDetail(@RequestParam("no") int no, Model d){
+		d.addAttribute("board", service.getBoardDetail(no));
+		return "WEB-INF\\views\\a04_boardDetail2.jsp";
+	}
+	@RequestMapping("updateBoard.do")
+	public String updateBoard(Board upt, Model d) {
+		System.out.println("수정:"+upt.getSubject());
+		d.addAttribute("board", service.updateBoard(upt));
+		d.addAttribute("proc", "upt");
+		return "WEB-INF\\views\\a04_boardDetail2.jsp";
+	}
+	@RequestMapping("deleteBoard.do")
+	public String deleteBoard(@RequestParam("no") int no, Model d) {
+		System.out.println("삭제:"+no);
+		service.deleteBoard(no);
+		d.addAttribute("proc", "del");
+		return "WEB-INF\\views\\a04_boardDetail2.jsp";
+	}
+	
 }

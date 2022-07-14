@@ -2,20 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="starryNight.dao.EventDao">
-
+	
 	<select id="eventList" resultType="event" parameterType="event">
 		SELECT * FROM event
 	</select>
-
+	 
 	<select id="getEvent" resultType="event" parameterType="int">
 		SELECT * FROM event WHERE event_no = #{event_no}
 	</select>
 
 	<insert id="insertEvent" parameterType="event">
 		INSERT INTO event 
-		VALUES(seq_event.nextval, #{event_title}, #{event_content}, sysdate, #{event_stDate}, #{event_dueDate}, #{event_img})
+		VALUES(seq_event.nextval, #{event_title}, #{event_content}, sysdate, #{event_stDate}, #{event_dueDate}, #{event_img}, 0)
 	</insert>
-
+	
+	<update id="readCountUp" parameterType="int">
+	   	UPDATE event
+	   	SET event_readCnt = event_readCnt + 1
+	   	WHERE event_no = #{event_no}
+	</update>
+	
 	<update id="updateEvent" parameterType="event">
 		UPDATE event
 		SET	   event_title=#{event_title}, event_content=#{event_content}, event_regDate=sysdate, 

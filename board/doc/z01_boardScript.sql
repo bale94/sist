@@ -4,10 +4,11 @@
 		subject varchar2(200),
 		content varchar2(2000),
 		writer varchar2(100),
-		reacnt number,
+		readcnt number,
 		regdte date,
 		uptdte date
 	);
+DROP TABLE board;
 SELECT * FROM board;
 	create sequence board_seq
 		start with 1
@@ -16,6 +17,7 @@ SELECT * FROM board;
 		increment by 1;
 	--sample 데이터 등록
 insert into board values(board_seq.nextval, 0, '첫번째글', '내용', '홍길동', 0, sysdate, sysdate);
+insert into board values(board_seq.nextval, 0, '두번째글', '내용', '신짱구', 0, sysdate, sysdate);
 --2. sql 작성
 	--1) 
 	select * 

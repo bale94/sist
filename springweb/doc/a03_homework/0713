@@ -1,0 +1,14 @@
+[1단계:개념] 1. 게시판의 상세화면 처리 프로세스를 기술하고, 각 내용의 핵심 코드를 기술하세요.
+1. sql을 짠다 insert into board values();
+2. vo를 확인하고 dao를 작성한다. public void insertBoard(Board ins){return dao.insertBoard(ins);}
+3. mapper를 작성한다 <mapper>insert into board values()</mapper>
+4. controller를 작성한다 @RequestMapping public String insertBoardForm()
+5. view단을 작성한다.
+[1단계:개념] 2. 게시판의 수정/삭제를 구분하는 js 코드는 무엇인가?
+onclick으로 들어가는 function에 따라 수정/삭제를 구분할수있다.
+
+[1단계:확인] 3. 오늘한 게시판 상세조회에서 수정삭제와 같이 사원리스트 기준으로 
+      기존 dao(DaoExp01)를 이용하여 spring에서 상세조회수정삭제하세요.
+      public Emp getDetail(int empno);
+      public void updateEmp02(Emp upt);
+      (추가)public void deleteEmp(int empno); 

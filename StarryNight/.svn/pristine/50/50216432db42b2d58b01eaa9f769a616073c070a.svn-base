@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+               "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="starryNight.dao.MemberDao">
+	<insert id="insertMember" parameterType="member">
+		insert into member values(seq_member.nextval, #{email}, #{pswd}, #{name}, #{to_char(birthDate,'YYYY-MM-DD')}, #{contact}, #{address}, 'U');
+	</insert>
+	
+	<select id="schMember" resultType="member">
+		select * 
+		from member
+	</select>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete
+		from member
+		where email = #{email}
+	</delete>
+	
+</mapper>

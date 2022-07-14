@@ -35,6 +35,9 @@
    function goInsert(){
 		location.href="${path}/boardInsertForm.do"
 	}
+   function goDetail(no){
+		location.href="${path}/boardDetail.do?no="+no;
+	}
 </script>
 </head>
 
@@ -70,7 +73,7 @@
     </thead>   
     <tbody>
     	<c:forEach var="board" items="${blist}">
-	       <tr><td>${board.no}</td><td>${board.subject}</td><td>${board.writer}</td><td><fmt:formatDate value="${board.regdte}"/></td><td>${board.readcnt}</td></tr>
+	       <tr ondblclick="goDetail(${board.no})"><td>${board.no}</td><td>${board.subject}</td><td>${bd.writer}</td><td><fmt:formatDate value="${board.regdte}"/></td><td>${board.readcnt}</td></tr>
     	</c:forEach>
     </tbody>
    </table>    
